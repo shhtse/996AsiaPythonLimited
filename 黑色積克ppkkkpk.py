@@ -1,14 +1,7 @@
 import random  # 隨機效果
 import time  # 計時效果
 
-suit = ["Spade", "Heart", "Club", "Diamond"]
-face = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
-fvalue = ["(1, 11)", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10", "10", "10"] * 4
-cardset = []
-point = dict()
-sum = 0
-Player1 = input("Hello, What's your name?")
-time.sleep(1)
+
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 0 Definiton~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def CardSet():                                                # build 52 cards
