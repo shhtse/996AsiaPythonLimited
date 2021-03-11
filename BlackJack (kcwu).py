@@ -1,5 +1,5 @@
-import random  # 隨機效果
-import time  # 計時效果
+import random  
+import time  # control speed of game
 
 suit = ["Spade", "Heart", "Club", "Diamond"]
 face = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
@@ -88,7 +88,7 @@ def scoring():
     def delay():                                              # speed of game flow
         if player == Player1:
             print("waiting ..............")
-            #time.sleep(1)
+            time.sleep(1)
 
     Player_point = {Player1: 0, "player 2": 0, "player 3": 0, "player 4": 0, "Banker": 0}
     Player_card = {Player1: "", "player 2": "", "player 3": "", "player 4": "", "Banker": ""}
