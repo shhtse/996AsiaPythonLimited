@@ -1,3 +1,4 @@
+# DLLM DEL ME FILE?
 import random  # 隨機效果
 import time  # 計時效果
 
