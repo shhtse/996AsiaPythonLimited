@@ -1,8 +1,8 @@
-§access to google drive:
-Google account:
-gitpython520@gmail.com
-Password:
-Gitpython1234567 
+§access to google drive:\n
+Google account:\n
+gitpython520@gmail.com\n
+Password:\n
+Gitpython1234567\n
 
 §google meet:
 https://meet.google.com/ybh-pinf-oao
