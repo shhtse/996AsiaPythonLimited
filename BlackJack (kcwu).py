@@ -28,9 +28,9 @@ def game():                                           # Game Intro
     print(Player1, "The game will start soon")
     time.sleep(2)
     print("Dealer is distributing cards")
-    scoring()
+    main()
 
-def scoring():
+def main():
     CardSet()
     PointValue()
     def card_expose():
@@ -104,14 +104,13 @@ def scoring():
     Player_point = {Player1: 0, "🤴": 0, "🤵": 0, "👳": 0, "💰": 0}
     Player_card = {Player1: "", "🤴": "", "🤵": "", "👳": "", "💰": ""}
     minus = [Player1, "🤴", "🤵", "👳", "💰"]  # end looping  of useless meessage: (stand. stand. stand)
-    minus_2 = [Player1, "🤴", "🤵", "👳", "💰"]
     print("\n\nNew Round\nWith Card Exhibiting")
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 1 Card Exhibtion & Covered~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     for player in Player_point:
         card_expose()
 
-    print("\n\nWith Card Covered")
+    print("\n\nWith Cartd Covered")
     cal_unknown()
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 2 Hit and Stand~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
