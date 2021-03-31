@@ -1,8 +1,8 @@
 import random
 import time        # control the speed of the game
 
-suit = ["Spade", "Heart", "Club", "Diamond"]
-face = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
+suit = ["♠", "♥", "♣", "♦"]
+face = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 fvalue = ["(1, 11)", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10", "10", "10"] * 4
 cardset = []
 point = dict()
@@ -101,10 +101,10 @@ def scoring():
             print("waiting ..............")
             time.sleep(1)
 
-    Player_point = {Player1: 0, "player 2": 0, "player 3": 0, "player 4": 0, "Banker": 0}
-    Player_card = {Player1: "", "player 2": "", "player 3": "", "player 4": "", "Banker": ""}
-    minus = [Player1, "player 2", "player 3", "player 4", "Banker"]  # end looping  of useless meessage: (stand. stand. stand)
-    minus_2 = [Player1, "player 2", "player 3", "player 4", "Banker"]
+    Player_point = {Player1: 0, "🤴": 0, "🤵": 0, "👳": 0, "💰": 0}
+    Player_card = {Player1: "", "🤴": "", "🤵": "", "👳": "", "💰": ""}
+    minus = [Player1, "🤴", "🤵", "👳", "💰"]  # end looping  of useless meessage: (stand. stand. stand)
+    minus_2 = [Player1, "🤴", "🤵", "👳", "💰"]
     print("\n\nNew Round\nWith Card Exhibiting")
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 1 Card Exhibtion & Covered~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -162,7 +162,7 @@ def scoring():
     print("\n\nFinally, we get the winner:")          # Consider with more than one player having max.pt.
     for player in Player_point:
         if Player_point[player] == a:
-            print(player, "with points:", a)
+            print(player, "🏆, with points:", a)
 
     print("\n\nResult:")
     for player in Player_point:
