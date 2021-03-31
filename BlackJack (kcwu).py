@@ -23,6 +23,8 @@ def PointValue():                                             # Appending dict()
         point[cardset[i]] = fvalue[i]                         # dict[key] = value
 
 def game():                                           # Game Intro
+    CardSet()
+    PointValue()
     print(Player1, "The game will start soon")
     time.sleep(2)
     print("Dealer is distributing cards")
