@@ -2,7 +2,7 @@ import random
 import time        # control the speed of the game
 
 suit = ["♠", "♥", "♣", "♦"]
-face = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+face = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 fvalue = ["(1, 11)", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10", "10", "10"] * 4
 cardset = []
 point = dict()
@@ -57,8 +57,8 @@ def scoring():
                 print(player, ":", Player_card[player], "+ ?, total point:", Player_point[player], "+ ?")
             draw = random.choice(list(point))
             val = point[draw]
-            Num = Player_card.get(player) + " " + draw
-            Player_card[player] = Num
+            card2 = Player_card.get(player) + " " + draw
+            Player_card[player] = card2
             if val == "(1, 11)":
                 if Player_point[player] > 10:
                     pt = 1
@@ -71,7 +71,7 @@ def scoring():
             Player_point[player] = sum
             if player == Player1:
                 time.sleep(1)
-                print(player, ":", Num, " total point:", sum)
+                print(player, ":", card2, " total point:", sum)
                 continue
             time.sleep(1)
 
