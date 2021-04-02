@@ -67,6 +67,20 @@ def dealer_cal():
                 dealer_pt += 10
     return dealer_pt
 
+def dealer_cal2():
+    dealer_pt = 0
+    for i in range(len(dealer_hand)):
+        try:
+            dealer_pt += dealer_hand[i]
+        except:
+            if i == 'A':
+                if dealer_pt > 10:
+                    dealer_pt += 1
+                else:
+                    dealer_pt += 11
+            else:
+                dealer_pt += 10
+    return dealer_pt
 
 shuffle()
 for i in range(2): hit()
@@ -87,19 +101,19 @@ while decision != 's':
         break
     decision = input('Hit or stand?(H) or (S)').lower()
 if cal() <= 21:
-    while dealer_cal() < 17:
+    while dealer_cal2() < 17:
         dealer_hit()
-        dealer_cal()
-    print('Dealer hand : ', dealer_hand, '. Dealer point =', dealer_cal())
-    if cal() == dealer_cal():
+        dealer_cal2()
+    print('Dealer hand : ', dealer_hand, '. Dealer point =', dealer_cal2())
+    if cal() == dealer_cal2():
         print('打和啦Super!!')
     elif cal() == 21:
         print('BlackJack! You win.')
-    elif dealer_cal() == 21:
+    elif dealer_cal2() == 21:
         print('Dealer has a BlackJack')
-    elif dealer_cal() > 21:
+    elif dealer_cal2() > 21:
         print('Dealer bust, you win')
-    elif cal() < dealer_cal():
+    elif cal() < dealer_cal2():
         print('You loss')
     else:
         print('Yon win')
