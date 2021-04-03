@@ -1,4 +1,3 @@
-#===================================================== Importing Module ================================================
 import random
 import time
 #===================================================== Global variable ================================================
@@ -12,6 +11,8 @@ player_point = {}
 player_card = {}
 chips = dict()
 round = 0
+
+
 #===================================================== Defining Function ===============================================
 def Cardset():                       # Making a card set
     for w in suit:
@@ -19,7 +20,7 @@ def Cardset():                       # Making a card set
             cardset.append(w + " " + p)
 
 def PointValue():                    # Convert facevalue to point
-    keys = range(52)  
+    keys = range(52)
     for i in keys:
         point[cardset[i]] = fvalue[i]
 
@@ -40,13 +41,13 @@ def playerformation():               # create players' number from their input
         except:
             print("sorry, I don't understand what you mean, please try again!")
 
-def betting_sys():                  
-    for player in playerlst:        
+def betting_sys():
+    for player in playerlst:
         chips[player] = 500
 
 def next_round():
     print("\n\n")
-    loop = True                       
+    loop = True
     while loop == True:
         ask = input("would you like to start a New Round?").lower()
         if ask == "yes":
@@ -64,14 +65,14 @@ def mainbody():
     bonus = 0
     print("collecting 50 chips as entrance fee from all players")   # indication to foul players
     for player in chips:
-        if chips[player] < 50:        
+        if chips[player] < 50:
             print("sorry to say that ", player, "does not have qualification to join the game")
             chips.pop(player)
             continue
-        chips[player] -= 50                            
+        chips[player] -= 50
         bonus += 50
-    if len(chips) == 1:                 # id the last player appears: final winner     
-        for k, v in chips.items():
+    if len(chips) == 1:                 # id the last player appears: final winner
+        for k, v in chips.items():   ### correct to list
             print(k, "is the final winner in this game as others are fouled with", v, "congratulation!!!")
         restart_whole_game()
     minus = []                          # setting conditions for while loop
@@ -110,14 +111,14 @@ def mainbody():
         print("\n\n")
 
     # Hit and Stand Stage with betting decision
-    # player's move to choose action: hit/stand/surrender & bet:  
+    # player's move to choose action: hit/stand/surrender & bet:
     # each action, player need to choose: 1) bet? 2)hit/stand/surrender
     # if stand/ surrender is picked, player would no longer be able to make further action
-    while len(minus) > 0:              
+    while len(minus) > 0:
         for player in minus:
             bet_ = input("\n" + player + "  you have " + " " + str(
                 player_point[player]) + "  points" + ": Would you like to bet?   Yes or No").lower()
-            while bet_ != "yes" and bet_ != "no":                 
+            while bet_ != "yes" and bet_ != "no":
                 print("sorry, I don't understand what you mean, please try again!")
                 bet_ = input(player, "Would you like to bet?").lower()
 
@@ -130,7 +131,7 @@ def mainbody():
                 if question == "yes":
                     a = 5
                     amount = chips[player]
-                    chips[player] -= amount          
+                    chips[player] -= amount
                     print(player, "decides all in, betting: " + str(amount) + " chips")
                     bonus = bonus + amount    # chips collected and betted  will be accumulated as bonus for winner in this round
 
@@ -185,7 +186,7 @@ def mainbody():
                 print(player, "decides to Stand")
                 minus.remove(player)
 
-            elif action == "surrender":  
+            elif action == "surrender":
                 if a == 5:
                     back = int(amount / 2)  # if player surrender, he/she can take back half of chips he/she bet in this round
                     print(player, "decides to surrender, where he takes back half of amount:", back)
@@ -197,7 +198,7 @@ def mainbody():
                 minus.remove(player)
 
     # Deciding winner
-    print("\n\nLet see who is the winner")  
+    print("\n\nLet see who is the winner")
     lst = list()
     for k, v in player_point.items():        # Obtain the max. pt. from players
         if v > 21:
@@ -207,14 +208,14 @@ def mainbody():
         a, b = max(lst)
 
     winnerlst = list()
-    for player in chips:                     
+    for player in chips:
         if player_point[player] == a:        # print all players who has the largest points
             winnerlst.append(player)
             print(player, "with points:", a)
             average = int(bonus/len(winnerlst))
             chips[player] += average
 
-    print("Bonus accumulated:", bonus)       # amout of chips as bonus in total 
+    print("Bonus accumulated:", bonus)       # amount of chips as bonus in total
     print("Distributed winner(s) equally:", average)  # dividing equally if more than one winner
 
     print("\n\nResult:")
@@ -237,7 +238,7 @@ def First_Round():
     Cardset()
     PointValue()
     playerformation()
-    betting_sys()  
+    betting_sys()
     mainbody()
     next_round()
 
