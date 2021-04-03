@@ -8,7 +8,6 @@ def restore_card():
     for s in ["♠", "♥", "♣", "♦"]:
         for i in range(13):
             card[s + face[i]] = fv[i]
-restore_card()
 
 def restore_lst():      # Restore in each New Round
     global name_pt, name_card, sum, remove_lst
