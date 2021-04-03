@@ -1,187 +1,125 @@
 import random
-import time        # control the speed of the game
+user = input("Hello, What's your name?")
 
-suit = ["♠", "♥", "♣", "♦"]
-face = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-fvalue = ["(1, 11)", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10", "10", "10"] * 4
-cardset = []
-point = dict()
-sum = 0
-Player1 = input("Hello, What's your name?")
-time.sleep(1)
+def restore_card():
+    global card
+    card = dict()
+    face = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    fv = ["(1, 11)", "2", "3", "4", "5", "6", "7", "8", "9", "10", "10", "10", "10"]
+    for s in ["♠", "♥", "♣", "♦"]:
+        for i in range(13):
+            card[s + face[i]] = fv[i]
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 0 Definiton~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def CardSet():                                                # build 52 cards
-    for w in suit:
-        for p in face:
-            cardset.append(w + " " + p)
+def restore_lst():
+    global name_lst, name_pt, name_card, sum
+    sum = 0
+    name_lst = ["🤴", "🤵", "👳", "💰", user]
+    name_pt = {}
+    name_card = {}
 
+def spacing():
+    print("\n")
 
-def PointValue():                                             # Appending dict()
-    keys = range(52)  # 用range integer化 -> 用作loop用途
-    for i in keys:
-        point[cardset[i]] = fvalue[i]                         # dict[key] = value
-
-def game():                                           # Game Intro
-    CardSet()
-    PointValue()
-    print(Player1, "The game will start soon")
-    time.sleep(2)
-    print("Dealer is distributing cards")
-    main()
-
-def main():
-    CardSet()
-    PointValue()
-    def card_expose():
-        draw = random.choice(list(point))
-        Player_card[player] = Player_card[player] + " " + draw                  # extract corresponding value of key in dict()
-        val = point[draw]
+def drawing():
+    for player in name_lst:
+        global draw
+        draw = random.choice(list(card))
+        if player not in name_card:
+            name_card[player] = draw
+        elif player in name_card:
+            name_card[player] = name_card[player] + ", " + draw
+        val = card[draw]
+        if player not in name_pt:
+            name_pt[player] = 0
         if val == "(1, 11)":
-            if Player_point[player] > 10:                                       # point determination of Ace
+            if name_pt[player] > 10:
                 pt = 1
             else:
                 pt = 11
         else:
             pt = int(val)
-        point.pop(draw, None)                                                   # attain card drawing without replacement
-        sum = Player_point.get(player) + pt
-        Player_point[player] = sum
-        time.sleep(1)
-        delay()
-        print(player, Player_card[player], " total point:", sum)
+        card.pop(draw, None)  # drawing without replacement
+        name_pt[player] = name_pt[player] + pt
 
-    def cal_unknown():                                                          # Card with covered
-        for player in Player_point:
-            if player != Player1:
-                print(player, ":", Player_card[player], "+ ?, total point:", Player_point[player], "+ ?")
-            draw = random.choice(list(point))
-            val = point[draw]
-            card2 = Player_card.get(player) + " " + draw
-            Player_card[player] = card2
-            if val == "(1, 11)":
-                if Player_point[player] > 10:
-                    pt = 1
-                else:
-                    pt = 11
-            else:
-                pt = int(val)
-            point.pop(draw, None)
-            sum = Player_point.get(player) + pt
-            Player_point[player] = sum
-            if player == Player1:
-                time.sleep(1)
-                print(player, ":", card2, " total point:", sum)
-                continue
-            time.sleep(1)
+def showing_card():
+    spacing()
+    print("dealer is now distributing the first card")
+    drawing()
+    for player in name_lst:
+        print(player, ":", name_card[player], "total point", name_pt[player])
 
-    def hit():
-        draw = random.choice(list(point))
-        Player_card[player] = Player_card[player] + " " + draw                                  # marking card into dict()
-        val = point[draw]
-        if val == "(1, 11)":
-            if Player_point[player] > 10:                                                       # point determination of Ace
-                pt = 1
-            else:
-                pt = 11
-        else:
-            pt = int(val)
-        point.pop(draw, None)                                                                   # attain card drawing without replacement
-        sum = Player_point.get(player) + pt
-        Player_point[player] = sum
-        time.sleep(1)
-        if player == Player1:
-            print(player, "decides to Hit, and receives", draw, "total:", sum)
-        elif player != Player1:
-            delay()
-            print(player, "decides to Hit, and receives", draw)
+def not_showing_card():
+    spacing()
+    print("dealer is now distributing the second card")
+    for player in name_lst:
+        if player != user:
+            print(player, ": ???", "with point: ???")
+            continue
+        drawing()
+        print(player, ":", name_card[player], "total point", name_pt[player])
 
-    def delay():                                              # speed of game flow
-        if player == Player1:
-            print("waiting ..............")
-            time.sleep(1)
-
-    Player_point = {Player1: 0, "🤴": 0, "🤵": 0, "👳": 0, "💰": 0}
-    Player_card = {Player1: "", "🤴": "", "🤵": "", "👳": "", "💰": ""}
-    minus = [Player1, "🤴", "🤵", "👳", "💰"]  # end looping  of useless meessage: (stand. stand. stand)
-    print("\n\nNew Round\nWith Card Exhibiting")
-
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 1 Card Exhibtion & Covered~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    for player in Player_point:
-        card_expose()
-
-    print("\n\nWith Cartd Covered")
-    cal_unknown()
-
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 2 Hit and Stand~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    print("\n\n")
-    while len(minus) > 1:
+def hit_and_stand():
+    spacing()
+    remove_lst = ["🤴", "🤵", "👳", "💰", user]
+    while len(remove_lst) > 1:
         action = input("stand or hit?       :").lower()
         if action == "hit":
-            for player in minus:
-                if player == Player1:
-                    hit()
-                elif player != Player1 and Player_point[player] < 15:
-                    hit()
-                elif player != Player1 and Player_point[player] >= 15:
-                    print(player, "decides to Stand")
-                    minus.remove(player)
-                    delay()
+            for player in name_lst:
+                if player != user:
+                    if name_pt[player] >= 16:
+                        print(player, ": stand")
+                        remove_lst.remove(player)
+                        continue
+                    drawing()
+                    print(player, "decides to hit, and gets", draw)
+                if player == user:
+                    print(player, "decides to hit, and gets", draw)
+                    print(player, ":", name_card[player], "total point", name_pt[player])
+            print(name_lst)
         elif action == "stand":
-            while len(minus) > 0:
-                for player in minus:
-                    if player == Player1:
-                        print(player, "decides to Stand")
-                        minus.remove(player)
-                        delay()
-                    elif player != Player1:
-                        if Player_point[player] >= 15:
-                            delay()
-                            print(player, "decides to Stand")
-                            minus.remove(player)
-                            delay()
-                        elif Player_point[player] < 15:
-                            hit()
-                            delay()
-        else:    # prevent bug
+            spacing()
+            while len(remove_lst) > 0:
+                for player in remove_lst:
+                    if player == user or player != user and name_pt[player] >= 16:
+                        print(player, ": stand")
+                        remove_lst.remove(player)
+                        continue
+                    drawing()
+                    print(player, "decides to hit, and gets", draw)
+        else:
             print("Sorry, I don't understand.")
 
-
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 3 Point Judgement~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    print("\n\nLet see who is the winner")  # When 21 does not appear
-    largest = 0
-    lst = list()
-    for k, v in Player_point.items():             # Obtain the max. pt. from players
-        if v > 21:
-            print(k, "loses as Bust")
+def choosing_winner():
+    spacing()
+    largest = []
+    for key, value in name_pt.items():
+        if value > 21:
+            print(key, "Bust")
             continue
-        lst.append((v, k))
-    a, b = max(lst)
+        largest.append(value)
+        large = max(largest)
+        if name_pt[key] == large:
+            print(key, "is the winner, with points:", large)
+        print(key, "has:", name_card[key], "             with total point:", name_pt[key])
 
-    print("\n\nFinally, we get the winner:")          # Consider with more than one player having max.pt.
-    for player in Player_point:
-        if Player_point[player] == a:
-            print(player, "🏆, with points:", a)
-
-    print("\n\nResult:")
-    for player in Player_point:
-        print(player, "has:", Player_card[player], "             with total point:", Player_point[player])
-        time.sleep(0.5)
-
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Part 4 Start Again?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    print("\n\n")
-    loop = True                                      # Play again?
-    while loop == True:
-        ask = input("would you like to start a New Round?").lower()
-        if ask == "yes":
-            loop = False
-            game()
-        elif ask == "no":
-            print("See You")
-            break
-        else:
+def again():
+    while True:
+        try:
+            again = input("would you like to start a New Round?").lower()
+            if again == "yes":
+                main()
+            elif again == "no":
+                print("See U")
+        except:
             print("Sorry, I don't understand. Please try again")
 
-CardSet()
-PointValue()
-game()
+def main():
+    restore_card()
+    restore_lst()
+    showing_card()
+    not_showing_card()
+    hit_and_stand()
+    choosing_winner()
+    again()
+
+main()
