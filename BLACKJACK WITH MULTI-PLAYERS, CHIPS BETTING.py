@@ -1,6 +1,7 @@
 import random
 
-def restore_card():
+
+def restore():
     global card
     card = dict()
     face = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
@@ -8,21 +9,21 @@ def restore_card():
     for s in ["♠", "♥", "♣", "♦"]:
         for i in range(13):
             card[s + face[i]] = fv[i]
-
-def restore_lst():      # Restore in each New Round
     global name_pt, name_card, sum, remove_lst
     sum = 0
     name_pt = {}
     name_card = {}
     remove_lst = []
 
-def player_lst():     # Restore in Each NEW Game
+
+def player_setting():  # Restore in Each NEW Game
     global player_lst
     player_lst = []
     running = True
     while running:
         try:
-            player_num = input('''Welcome to the BlackJack World, \nhow many players you want to create?(Please enter the number from 2 to 9)''')
+            player_num = input(
+                '''Welcome to the BlackJack World, \nhow many players you want to create?(Please enter the number from 2 to 9)''')
             number = int(player_num)
             if number > 1 and number < 10:
                 for player in list((range(number))):
@@ -30,22 +31,22 @@ def player_lst():     # Restore in Each NEW Game
                     player_lst.append(name)
                     running = False
                 print("So we have the followings players:", player_lst, "\n\nThe game will start after 3 seconds")
-                chips_system()
         except:
             print("sorry, I don't understand what you mean, please try again!")
-
-def chips_system(): # Restore in Each NEW Game
     global survivor_chips
     survivor_chips = {}
     for player in player_lst:
         survivor_chips[player] = 500
 
-def remove():
+
+def spacing():
+    print("\n")
+
+
+def starting():
     for k, v in survivor_chips.items():
         remove_lst.append(k)
     print("Dealer is now distributing cards...\n\n")
-
-def entrance_fee():
     global bonus
     bonus = 0
     print("collecting 50 chips as entrance fee from all players")
@@ -57,9 +58,10 @@ def entrance_fee():
         survivor_chips[player] -= 50
         bonus += 50
 
-def drawing(): #  Before hit and stand
+
+def drawing():  # Before hit and stand
     for player in survivor_chips:
-        global draw     # make a local variable global
+        global draw  # make a local variable global
         draw = random.choice(list(card))
         if player not in name_card:
             name_card[player] = draw
@@ -79,9 +81,39 @@ def drawing(): #  Before hit and stand
         name_pt[player] += pt
         print(player, name_card[player], "total point:", name_pt[player])
 
+
+def hit_and_stand():
+    for player in remove_lst:
+        action = input(player + " you have " + " " + str(
+            name_pt[player]) + "  points  " + ", Would you stand, hit or surrender?   ").lower()
+        while action != "hit" and action != "stand" and action != "surrender":
+            print("Sorry, I don't understand.")
+            action = input(player + "Would you stand, hit or surrender?").lower()
+
+        if action == "hit":
+            hitting()
+
+        elif action == "stand":
+            print(player, "decides to Stand")
+            remove_lst.remove(player)
+
+        elif action == "surrender":
+            print(player, "decides to surrender, and showing his card", name_card)
+            remove_lst.remove(player)
+        else:
+            print("Sorry, I don't understand.")
+
+
+def hit_and_stand_and_bet():
+    spacing()
+    while len(remove_lst) > 0:
+        betting()
+        hit_and_stand()
+
+
 def betting():
     for player in remove_lst:
-        bet = input(player + "you have" + str(name_pt[player])+ "points. Would you like to bet? Yes or No").lower()
+        bet = input(player + "you have" + str(name_pt[player]) + "points. Would you like to bet? Yes or No").lower()
         while bet != "yes" and bet != "no":
             print("sorry, I don't understand what you mean, please try again!")
             bet = input(player + "Would you like to bet?").lower()
@@ -118,30 +150,32 @@ def betting():
         elif bet == "no":
             print(player, "decides not bet")
 
-def hit_and_stand():
+
+def hitting():
     for player in remove_lst:
-        action = input(player + " you have " + " " + str(name_pt[player]) + " points" + ", Would you stand, hit or surrender?   ").lower()
-        while action != "hit" and action != "stand" and action != "surrender":
-            print("Sorry, I don't understand.")
-            action = input(player + "Would you stand, hit or surrender?").lower()
-
-        if action == "hit":
-            hitting()
-
-        elif action == "stand":
-            print(player, "decides to Stand")
-            remove_lst.remove(player)
-
-        elif action == "surrender":
-                print(player, "decides to surrender, and showing his card", name_card)
-                remove_lst.remove(player)
+        draw = random.choice()
+        name_card[player] += "," + draw
+        val = card[draw]
+        if card[draw] == "(1, 11)":
+            if name_pt[player] > 10:
+                pt = 1
+            else:
+                pt = 11
         else:
-            print("Sorry, I don't understand.")
+            pt = int(val)
+        card.pop(draw, None)  # drawing without replacement
+        name_pt[player] += pt
+        print(player, "hit, gets ", draw)
+        print(player, ":", name_card[player], " total point ", name_pt[player])
+        if name_pt[player] > 21:
+            remove_lst(player)
+
 
 def round_winner():
+    spacing()
     largest = []
     winnerlst = []
-    print("Result")
+    print("\n\nResult")
     for key, value in name_pt.items():
         if value > 21:
             print(key, "Bust")
@@ -163,29 +197,6 @@ def round_winner():
         print(player, "has:", name_card[player], " with total point:", name_pt[player], "Remaining chips:",
               survivor_chips[player])
 
-def hitting():
-    for player in remove_lst:
-        draw = random.choice()
-        name_card[player] += "," + draw
-        val = card[draw]
-        if card[draw] == "(1, 11)":
-            if name_pt[player] > 10:
-                pt = 1
-            else:
-                pt = 11
-        else:
-            pt = int(val)
-        card.pop(draw, None)  # drawing without replacement
-        name_pt[player] += pt
-        print(player, "hit, gets", draw)
-        print(player, ":", name_card[player], "total point", name_pt[player])
-        if name_pt[player] > 21:
-            remove_lst(player)
-
-def hit_and_stand_and_bet():
-    while len(remove_lst) > 0:
-        betting()
-        hit_and_stand()
 
 def fouling_loser():
     for player in name_pt:
@@ -194,11 +205,13 @@ def fouling_loser():
             print(player, "is fouled as no chips remained")
             survivor_chips.pop(player)
 
+
 def final_winner():
     if len(survivor_chips) == 1:
         for k, v in survivor_chips.items():
             print(k, "is the final winner in this game as others are fouled with", v, "congratulation!!!")
         next_game()
+
 
 def next_round():
     while True:
@@ -211,6 +224,7 @@ def next_round():
         else:
             print("Sorry, I don't understand. Please try again")
 
+
 def next_game():
     while True:
         ask = input("would you like to start a New Game?").lower()
@@ -222,33 +236,36 @@ def next_game():
         else:
             print("Sorry, I don't understand. Please try again")
 
-def initial_round():
-    restore_lst()
-    restore_card()
-    player_lst()
-    remove()
-    entrance_fee()
+
+#  Game stage
+def pre_hit_and_stand():
+    starting()
     final_winner()
     drawing()
     drawing()
-    hit_and_stand_and_bet()
+
+
+def post_hit_and_stand():
     round_winner()
     fouling_loser()
     final_winner()
     next_round()
 
-def consecutive_round():
-    restore_lst()
-    restore_card()
-    remove()
-    entrance_fee()
-    final_winner()
-    drawing()
-    drawing()
+
+# Game Flow
+def initial_round():
+    restore()
+    player_lst()
+    pre_hit_and_stand()
     hit_and_stand_and_bet()
-    round_winner()
-    fouling_loser()
-    final_winner()
-    next_round()
+    post_hit_and_stand()
+
+
+def consecutive_round():
+    restore()
+    pre_hit_and_stand()
+    hit_and_stand_and_bet()
+    post_hit_and_stand
+
 
 initial_round()
