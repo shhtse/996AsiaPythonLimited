@@ -34,9 +34,6 @@ def player_lst():     # Restore in Each NEW Game
         except:
             print("sorry, I don't understand what you mean, please try again!")
 
-def spacing():
-    print("\n")
-
 def chips_system(): # Restore in Each NEW Game
     global survivor_chips
     survivor_chips = {}
@@ -142,7 +139,6 @@ def hit_and_stand():
             print("Sorry, I don't understand.")
 
 def round_winner():
-    spacing()
     largest = []
     winnerlst = []
     print("Result")
@@ -187,7 +183,6 @@ def hitting():
             remove_lst(player)
 
 def hit_and_stand_and_bet():
-    spacing()
     while len(remove_lst) > 0:
         betting()
         hit_and_stand()
@@ -231,9 +226,7 @@ def initial_round():
     restore_lst()
     restore_card()
     player_lst()
-    print("3")
     remove()
-    print("4")
     entrance_fee()
     final_winner()
     drawing()
