@@ -79,10 +79,6 @@ while True:
                 continue
             if name[k].name in finished_player:
                 continue
-            if name[k].point == 21:
-                print(f'{name[k].__str__()} Blackjack!! See if the Dealer gets a blackjack too.')
-                finished_player.append(name[k].name)
-                continue
             while name[k].bet == 0:
                 bet = int(input(f'{name[k].name}, how much do you want to bet for this round? (At least $10)'))
                 if bet < 10:
@@ -90,6 +86,10 @@ while True:
                 if bet >= 10:
                     name[k].bet = bet
                     name[k].chip -= name[k].bet
+            if name[k].point == 21:
+                print(f'{name[k].__str__()} Blackjack!! See if the Dealer gets a blackjack too.')
+                finished_player.append(name[k].name)
+                continue
             decision = input(f'{name[k].__str__()}Do you want to hit or stand?').lower()
             if decision == 'hit':
                 hit(k)
@@ -138,7 +138,7 @@ while True:
         if name[k].chip <= 0:
             bankrupt_player.append(name[k].name)
     if len(bankrupt_player) != 0:
-        print('We have player goes bankrupt.')
+        print('We have bankrupt player.')
         break
     again = input('Do you want to player again?(Yes / No)').lower()
     if again == 'no':
@@ -147,3 +147,4 @@ for k in range(n+1):
     if k == 0:
         continue
     print(f'{name[k].name} has ${name[k].chip}.')
+
