@@ -146,4 +146,4 @@ while True:
 for k in range(n+1):
     if k == 0:
         continue
-    print(f'{name[k].name} has {name[k].chip}.')
+    print(f'{name[k].name} has ${name[k].chip}.')
