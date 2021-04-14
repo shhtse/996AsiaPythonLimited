@@ -170,7 +170,7 @@ class Game:
             else:
                 print(str(player) + "quit the game")
                 self.p.players.remove(player)
-        print(self.bonus.bonus)
+
 
     def double_draw(self):
         for i in range(2):
@@ -202,17 +202,16 @@ class Game:
                                         self.bonus.add_bonus(all)
                                         player.chips.chips -= all
                                         print(str(player) + "   bets   " + str(all))
-                                        print(self.bonus.bonus)
                                         break
                                 except:
                                     print("try again")
 
                         elif types == "split":
-                            print('''When you reply: Split, public security guides came near''')
+                            print("Public Security guides came near")
                             time.sleep(1)
-                            print(str(player) + " 同志 ,你涉嫌分裂国家 颠复国家政权, 跟我们回去接受阳光司法")
-                            time.sleep(1)
-                            print(str(player) + " is arrested and quit the game")
+                            print("\033[31;1m 同志 ,你涉嫌分裂国家 颠复国家政权, 跟我们回去接受阳光司法\033[0m")
+                            time.sleep(2)
+                            print("\n" + str(player) + " is arrested and quit the game")
                             time.sleep(1)
                             self.p.move.remove(player)
                             self.p.players.remove(player)
@@ -229,9 +228,9 @@ class Game:
                             time.sleep(1)
                             print("Dealer: Sorry, there is only one China policy, and I am calling public security guides")
                             time.sleep(1)
-                            print(str(player) + " 同志 ,跟我们回去接受爱国思想教育")
-                            time.sleep(1)
-                            print(str(player) + "  is sent to Concentration Camp to enjoy comfortable life and quit the game")
+                            print("\031[31;1m 同志 ,跟我们回去接受爱国思想教育\033[0m")
+                            time.sleep(2)
+                            print("\n" + srt(player) + "  is sent to Concentration Camp to enjoy comfortable life and quit the game")
                             time.sleep(1)
                             print(str(player) + "'s chips is confiscated")
                             time.sleep(1)
@@ -249,7 +248,6 @@ class Game:
                                         player.chips.chips -= amount
                                         self.bonus.add_bonus(amount)
                                         print(str(player) + "  bets   " + str(amount))
-                                        print(self.bonus.bonus)
                                         break
                                 except:
                                     print("try again")
@@ -286,8 +284,81 @@ class Game:
             self.bonus.bonus_sharing(self.max_pt)
 
         else:
-            print("All player are sent to jail")
-            print("There is no winner in this game! Super!!!!")
+            print("\n\nAll player are sent to jail!!!!")
+            time.sleep(1)
+            print("As There are no player remain in the game:")
+            time.sleep(2)
+            print("\n\n"
+"""\033[33;1m
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNXKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXx;..,dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNX0ko:'.     .,lxOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxl:,..               .';cd0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXx;.                .,:;'.    .;dXWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNd'     ..',:cllllllllx0XK0Od:.    .dXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM0:    .cdk00KKKKKKKKKKKKKKKKKKKOl'    ;0WMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0,   .cOKKKKKKKKKKKKKKKKKKKKKKKKKKOo'   'OWMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMK;    .dKKKKKKKK0KKKKKKKKKKKKKKKK0KKKO;   ,KMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMNl     .o0KKK0xllccokKKKKKKKKKKxlcclokKk'   oWMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMM0'      .:kKKkdxkxddOKKKKKKKKK0kdxkkdxOKk:. 'OMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMWd.    .';lOKKKOo;,'';xKKKKKKKOl;,,;lOKKKKO;  lNMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMXc  .;dOKKKKK0xl,.,:;;d00KKKKK0o;,;';dxxOK0:  ;KMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMK,  c0KKKKKKK0dcc:cdxl;,:xKKKKKx::c;;cclkKKc  '0MMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMWKO00x. 'kKKKKKKKKKKKKOl:;,;cd00kkOKOo:;:xKKKKKKc  .o00KXWMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMWOdkOk:  ,OKKKK00KK0KKKKKK00KK0o;;;,cx0KKKKKK0KK0c   .oOkx0WMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMXxxoco:. ,OKKK000KK00KKKK0kl:;,'lOOo:;;cx0KK00KK0l.  .,cdxkNMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMNkdoo:.  ;OKKK0000000KKKx:,:odxO0KKKK0xc,;x000000l.   ;oddxNMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMW0xOOo.  ;OKKKK00000KKKx',xKKKKKOddOKKKKk;'o00000o.  .lOOdOWMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMKdxOk;  ;OKKKKKKKKKKKKo;xKKKKKO;  :OKKKKOod0KKKKd.  .lOddXMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMWklkO:  ,OKKKKKKKKKKKKK0KKKKKKk'  'kKKKKKKKKKKKKd.   ld:xWMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMOlxO:  ,OKKKKKKKKKKKKKKKKKKKK0:  ,kKKKKKKKKKKKKx.   cd:kWMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMM0dO0:  ,kKKKKKKKKKKKKKKKKKKKKKOookKKKKKKKKKKKKKx.   lxlOMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMN000:  ,k0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKx.  .cdxXMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMWNXd. ,xO0KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKx' .d0KNMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMK, ,xkO00KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKk' '0MMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMK, ,xkkOO00000KK00000000000000KKKKKKK00000Kk' '0MMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMK, 'dkkkkO000000x:;o000000000000000xlx00000x' '0MMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMK,  .:dkkkOO0000o. 'x0000000000000x' :O000Ox' '0MMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMNc   .cxxxkkOOO0k;  ;k0000000000kc. .lOOOkkd, ;KMMMMMMMMMMMMMMMMMMMMMMMMM
+MMWWWNXNWMMMMMMMWMMMMMMMMMMMx.   'oxxxxxkkOOd'  .,:codddoc;.   ,xOkkxd:..kWMMMMMMMMMMMMMMMMMMMMMMMMM
+NOdoolodkKWMMWXkxONMMMMMMMWXx'    ,dxxxxxxxkkd;.            .'cdxxxxo; .oNMMMMMMMMMMMMMMMMMMMMMMMMMM
+O:cxkxkOxxxkOkdxdccoddddol:,..     ,oxxxxxxxxxxdl:;,.....',:oxxxxxdc.  cXMMMMMMMMMMMMMMMMMMMMMMMMMMM
+N0dloxkOOOkkxkOOd;.                 .:ldxxxxxxxxxxxxddddddxxxxxxxdc.  ,0MMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMWKdccodxkkOkkx:.                     .';:clooodddddddddooolc:;'.     'lkXWMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMWX0Okxdddxdc'.                           ...............              .:xKWMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMWNNNNWO,                        ...                                 .;okKNMMMMMMMWNXNMMMMMM
+MMMMMMMMMMMMMMMO,                       'kX0o'.......;ol'                        .xWMMMWN0xdodKWMMMM
+MMMMMMMMMMMMMMMKc.                  .;lxKWMMNx;'.'''cOWWXk;.                      ;xKX0kdoddll0MMMMM
+MMMMMMMMMMMMMMMWN0ko:..            .kWMMMMMMMNx,.',lKWMMMMNk,                     ';;:codxxo:cxkO0XW
+MMMMMMMMMMMMMMMMMMMMWX0xo,          :KMMMMMMMNd'.,:xWMMMMMWk.                    ,ddddxxxxxxl:;;;;cO
+MMMMMMMMMMMMMMMMMMMMMMMMMK:          oWMMMMMWO:'.',c0WMMMWk.                 'okxxdddxxxxxxdc;,,';kN
+MMMMMMMMMMMMMMMMMMMMMMMMMK:          .OMMMMWO:'....'oXMMM0,               'oONMMMWX0xodxxdlc:;,,,lKM
+MMMMMMMMMMMMMMMMMMMMMMMMWKdlcccccc:::ckWMMMNklllllccdKMMWx,'..............;KMMMMMMMMXxoooo:'':clONMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWWWMMMWNNNNNXXXXXXXKKKKXWMMMMMMMMMWX0kxdclONWMMMM
+MMMMMMMMMMMMMMMW0xONMMNK0000000KNMMMMWNNNNNX0k0NNKKKKKKKXWMMMWK0000XWXkx0WMWKkOXMMMMMMMMMMWNNMMMMMMM
+MMMMMMMMMMMMNOxl. .cx0k;.......;OMMMNo,,,','..;kl.......cXMMM0,....:Oc. 'kOc.  ,dXMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMKc'.   .'dXK000c  ,ONMMMNklc'  .coO0;  .oo. ;KMMMO'.c; ;x,  .dkc::::oKMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMWNNO' .dNWMMMMWd. :XMMMM0:'..  ..'ck;  '00, ;XMMMO'.ol ;Kx. ;KOckNk:oXMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMK, .ck0WMMMWd. :XMMMMNxlo;  ,old0;  '00' ;XMMMO'.ol ;Kx. 'Oo.:0: ;KMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMXOd:.   .oWMMMWd. :XMMMMWo.oo. cx':O:  '00' ;XMMMO'.ol ;k:  .od.,x, cNMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMWd...  .:OXMMMMWo. :XMMMMNl.ol  cd.;O:  '00' ;KMMMO'.ol ;o'  'Ok.'l' oWMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMKk0k' .kMMMMMMWd. :XMMMMNl.ll  cx.;O:  '00' ;KMMMO'.oc ;0d. ;K0'.. .dWMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMW0, .kMMMMMMWo  :XMMMMK:.ll  cx.;O:  'OO' ;KMMMO'.oc ;Kx. ;KNkc. .kMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMKl'. .OMMM0l:;.  cNMMMMO;,xo. ck;cO;  .''. :XMMMO' .. :k;  :0d:;.  :KMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMXxlloONMMMXdlllldKMMMMMWXXW0ooONXXNkllllllo0WMMMXxlllo0XxldKXkllllldXMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMWWWWWWWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMW0o:;,,,,,,:dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMM0,  ,cccc:. .cXMMMMMMMMMMMWMMMMMMMWWMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMk. .oKKKK0kod0WMMWkcxNMMWOcdXMNx::::::::oKMWOc::::::lKMM0c::c:::cxXMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMXc. ........'oXMMNc ;XMMWl ,KMX; 'odddl. lNWo..cooodkXMWd..lkkx: .kMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMN0dodxxxxxc. .xMMNc ;XMMWl ,0MX; 'clll:..oWWo..:::: xWMMx..;ccc' ,0MMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMk'..cddddd:. .xMMNl 'ONNK: ,KMX; .cllllokXMWo..cdddxONMMd..:ooo;.'OMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMXl'..........lKMMW0;..,,'.'xNMX:.lNMMMMMMMMWd.::::   :kWMx.,OMMMO'.kMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMWX00OOOOOO0XWMMMMMNKOOOO0XWMMWKOXMMMMMMMMMMX0OOOOOO0XMMN00NMMMN00NMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+\033[0m
+""")
 
     def again(self):
         while True:
