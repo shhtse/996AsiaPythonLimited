@@ -160,7 +160,8 @@ class Game:
             self.again()
 
     def fee(self):
-        print("\nCollecting the participant fee")
+        print("\nCollecting the participant fee:...")
+        print("侯賽因: 任何人有50 chips 都可以參加既今次黑色積克比賽")
         for player in self.p.players:
             fee = 50
             if player.chips.chips > fee:
@@ -220,19 +221,17 @@ class Game:
                             time.sleep(1)
                             print("Dealer: Country Safety is prior than everything, include money!")
                             time.sleep(1)
-                            print("Remaining player:" + str(self.p.players))
+                            print("\n\nRemaining player:" + str(self.p.players))
                             continue
 
                         elif types == "double-down":
-                            print('''When you reply: Double, dealer, 侯賽因 asks "船到了公海 ?"''')
+                            print("When you reply, 侯賽因問:船駛到了公海 ?")
                             time.sleep(1)
-                            print("侯賽因: Sorry, 這裡是公海, 我殺人都不會坐監")
+                            print("侯賽因: 這裡是公海, 我殺人都不用坐監")
                             time.sleep(1)
-                            print("\033[31;1m U are killed\033[0m")
-                            time.sleep(2)
-                            print("\n" + srt(player) + " is sent to heaven to enjoy comfortable life with Jesus and quit the game")
+                            print(player, "quit the game and go to heaven")
                             time.sleep(1)
-                            print(str(player) + "'s chips is confiscated by 侯賽因")
+                            print(player, "s chips is confiscated by 侯賽因")
                             time.sleep(1)
                             self.p.move.remove(player)
                             self.p.players.remove(player)
@@ -372,5 +371,8 @@ MMMMMMMMMMMMMMMWX00OOOOOO0XWMMMMMNKOOOO0XWMMWKOXMMMMMMMMMMX0OOOOOO0XMMN00NMMMN00
                 print("try again!")
 
 # call function
+g = Game()
+g.start()
+
 g = Game()
 g.start()
