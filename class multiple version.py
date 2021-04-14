@@ -228,7 +228,7 @@ class Game:
                             time.sleep(1)
                             print("Dealer: Sorry, there is only one China policy, and I am calling public security guides")
                             time.sleep(1)
-                            print("\031[31;1m 同志 ,跟我们回去接受爱国思想教育\033[0m")
+                            print("\033[31;1m 同志 ,跟我们回去接受爱国思想教育\033[0m")
                             time.sleep(2)
                             print("\n" + srt(player) + "  is sent to Concentration Camp to enjoy comfortable life and quit the game")
                             time.sleep(1)
