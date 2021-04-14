@@ -32,6 +32,7 @@
 ====================================               ===============               =======================================
 """
 import random
+import time
 
 class Player:
     def __init__(self, name):
@@ -137,7 +138,7 @@ class Bonus:
         print("Current bonus" + str(self.bonus))
         average = self.bonus/len(round_winner_list)
         self.bonus -= self.bonus
-        print("winner :" +str(round_winner_list))
+        print("winner :" + str(round_winner_list))
         print("Each winning " + str(average) + "chips!")
         return average
 
@@ -192,8 +193,7 @@ class Game:
                 for player in self.p.move:
                     bet = input("\n" + str(player) + "   Would you like to bet?").lower()
                     if bet == "y":
-                        types = input("\nWhich types of bet would you choose  ?   All-in/ Split/ Double Down/ Free-Bet").lower()
-
+                        types = input("\nWhich types of bet would you choose  ?   All-in/ Split/ Double-Down/ Free-Bet").lower()
                         if types == "all-in":
                             while True:
                                 try:
@@ -208,10 +208,38 @@ class Game:
                                     print("try again")
 
                         elif types == "split":
-                            pass
+                            print('''When you reply: Split, public security guides came near''')
+                            time.sleep(1)
+                            print(str(player) + " 同志 ,你涉嫌分裂国家 颠复国家政权, 跟我们回去接受阳光司法")
+                            time.sleep(1)
+                            print(str(player) + " is arrested and quit the game")
+                            time.sleep(1)
+                            self.p.move.remove(player)
+                            self.p.players.remove(player)
+                            time.sleep(1)
+                            print(str(player) + "'s chips is confiscated")
+                            time.sleep(1)
+                            print("Dealer: Country Safety is prior than everything, include money!")
+                            time.sleep(1)
+                            print("Remaining player:" + str(self.p.players))
+                            continue
 
                         elif types == "double-down":
-                            pass
+                            print('''When you reply: Split, public security guides came near''')
+                            time.sleep(1)
+                            print("Dealer: Sorry, there is only one China policy, and I am calling public security guides")
+                            time.sleep(1)
+                            print(str(player) + " 同志 ,跟我们回去接受爱国思想教育")
+                            time.sleep(1)
+                            print(str(player) + "  is sent to Concentration Camp to enjoy comfortable life and quit the game")
+                            time.sleep(1)
+                            print(str(player) + "'s chips is confiscated")
+                            time.sleep(1)
+                            self.p.move.remove(player)
+                            self.p.players.remove(player)
+                            time.sleep(1)
+                            print(str(player) + "'s chips is confiscated")
+                            continue
 
                         elif types == "free-bet":
                             while True:
@@ -248,16 +276,23 @@ class Game:
                 print("sorry! Try again")
 
     def round_winner(self):
-        for player in self.p.players:
-            if player.hand.point > 21:
-                print(str(player) + "  Bust !!")
-            else:
-                self.max_pt.append(player)
+        if self.p.players:
+            for player in self.p.players:
+                if player.hand.point > 21:
+                    print(str(player) + "  Bust !!")
+                else:
+                    self.max_pt.append(player)
 
-        self.bonus.bonus_sharing(self.max_pt)
+            self.bonus.bonus_sharing(self.max_pt)
+
+        else:
+            print("All player are sent to jail")
+            print("There is no winner in this game! Super!!!!")
 
     def again(self):
         while True:
+            if not self.p.players:
+                print("Be careful of what you say next time")
             again = input("Start a new game?").lower()
 
             if again == "y" or "yes":
