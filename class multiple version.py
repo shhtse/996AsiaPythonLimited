@@ -224,20 +224,18 @@ class Game:
                             continue
 
                         elif types == "double-down":
-                            print('''When you reply: Split, public security guides came near''')
+                            print('''When you reply: Double, dealer, 侯賽因 asks "船到了公海 ?"''')
                             time.sleep(1)
-                            print("Dealer: Sorry, there is only one China policy, and I am calling public security guides")
+                            print("侯賽因: Sorry, 這裡是公海, 我殺人都不會坐監")
                             time.sleep(1)
-                            print("\033[31;1m 同志 ,跟我们回去接受爱国思想教育\033[0m")
+                            print("\033[31;1m U are killed\033[0m")
                             time.sleep(2)
-                            print("\n" + srt(player) + "  is sent to Concentration Camp to enjoy comfortable life and quit the game")
+                            print("\n" + srt(player) + " is sent to heaven to enjoy comfortable life with Jesus and quit the game")
                             time.sleep(1)
-                            print(str(player) + "'s chips is confiscated")
+                            print(str(player) + "'s chips is confiscated by 侯賽因")
                             time.sleep(1)
                             self.p.move.remove(player)
                             self.p.players.remove(player)
-                            time.sleep(1)
-                            print(str(player) + "'s chips is confiscated")
                             continue
 
                         elif types == "free-bet":
@@ -284,13 +282,12 @@ class Game:
             self.bonus.bonus_sharing(self.max_pt)
 
         else:
-            print("\n\nAll player are sent to jail!!!!")
+            print("\n\nAll player are sent to jail or Heaven !!!!")
             time.sleep(1)
-            print("As There are no player remain in the game:")
+            print("As no player remain in the game:")
             time.sleep(2)
             print("\n\n"
 """\033[33;1m
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNXKNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXx;..,dKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWNX0ko:'.     .,lxOKNWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxl:,..               .';cd0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
